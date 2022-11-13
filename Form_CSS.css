@@ -1,0 +1,26 @@
+body { 
+    background-color: lightgray;}
+h1 {
+    color:#006633;}
+.div1{
+    border:#006633 5px solid;
+    background-color: #ffcc33;
+    box-shadow:-30px 30px 30px yellowgreen;
+}
+
+.statue{
+    position: absolute;
+    width: 400px;
+    height: 630px;
+    top: 140px;
+    left: 940px;
+}
+.dialog{
+    top: 0;
+    left: 0;
+    padding: .2em;
+    border:#121312 5px solid;
+    background-color: #f5e61e;
+    z-index: 2;
+     
+    }

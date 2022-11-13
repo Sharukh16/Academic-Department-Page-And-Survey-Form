@@ -1,0 +1,184 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Survey Form</title>
+        <link rel ="stylesheet" type ="text/css" href ="Form_CSS.css" />
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+        <!--The below JavaScript file contains all the code
+        Refer the greetings.js file for all code-->
+
+        <script type="text/javascript" src="greetings.js"></script>
+    </head>
+    <!--On body load call welcome() in greetings.js-->
+    <body onload="welcome()">
+        <div class="div1">
+        <h1>George Mason University- CS Department Survey Form</h1>
+        </div><br /><br />
+       <div id = "welcomeMessage"></div>
+        <h4>Please fill out this form to provide feedback about the campus visit.</h4>
+        <img class="statue" src ="Statue.jpg" alt ="Statue" />
+        <form method="post" action="" autocomplete="on"  onsubmit="return validate()">
+            <p><label>Username*: 
+                <input name = "Username" id = "Username" type = "text" size = "25" maxlength="35" 
+                placeholder="Username" autofocus required/>
+            </label></p>
+
+            <p><label>Street Address*: 
+                    <input name = "Street_Address" id = "Street_Address" type = "text" size = "35" maxlength="60" 
+                    placeholder="Max length 60" required/>
+                </label>
+                <label>Zip*:
+                    <input name = "Zip" type = "text" size = "10" maxlength="5" id = "zip"
+                    placeholder="5 Digit Zipcode" onblur = "validateZip()" required />
+                </label>
+                <!--Display error only if zip is invalid. Contents filled using Inner HTML-->
+                <span name="wrongZip" id="wrongZip" style= "color: #FF0000"></span>
+            </p>
+
+            <!--State and city values filled using ajax call to fetch from zip.json file-->
+        <p><label>State:<span name="state" id="state"></span></label></br></br>
+            <label>City:<span name="city" id="city"></span></label>  
+        </p>
+
+        <p>
+            <label>Telephone Number:
+                <input name ="Telephone" type = "text" placeholder="10 digit number" id = "telephone"
+                size = "10" maxlength="10" />
+            </label>
+            <label>Email*:
+                <input name ="Email" type = "email" id ="email" placeholder="name@domain.com"
+                size = "30" required />
+            </label>
+        </p>
+
+        <p>
+            <label>URL:
+                <input name = "URL" type = "url" placeholder="http://www.domainname.com" size = 40 id = "url"/>
+            </label>
+        </p>
+        <p>
+            <label>Survey Date:
+                <input name = "Survey_Date" type = "date" placeholder="(yyyy/mm/dd)" id = "survey_date"/>
+            </label>
+        </p>
+        <p>
+            <b>What did you like the most about campus?*</b><br /><br />
+            <label>Students
+            <input name ="ThingsLiked" type = "checkbox" value="students" />
+            </label>
+
+            <label>Location
+                <input name ="ThingsLiked" type = "checkbox" value="location" />
+            </label>
+
+            <label>Campus
+                <input name ="ThingsLiked" type = "checkbox" value="campus" />
+            </label>
+
+            <label>Atmosphere
+                <input name ="ThingsLiked" type = "checkbox" value="atmosphere" />
+            </label>
+
+            <label>Dorm Rooms
+                <input name ="ThingsLiked" type = "checkbox" value="dorms" />
+            </label>
+
+            <label>Sports
+                <input name ="ThingsLiked" type = "checkbox" value="sports" />
+            </label>
+            <!-- Div used to create the Jquery modal
+            dialog box, when input is not as per expectation-->
+            <div id = "formatError" class ="dialog" style="display: none;">
+                <span id = "header" style="background-color: rgb(32, 218, 63);" >Jquery Modal Dialog box</span>
+            <p>Please enter the values in the appropriate format:
+               <br> <br>Username must be only alphabets.
+               <br>Address must be only alphanumeric characters(space allowed).
+               <br>Atleast 2 checkboxes must be checked.
+               <br>Radio button option must be selected.
+               <br>Enter valid email address of the form - name@domain.com
+            </p>
+            </div>
+        </p>
+
+        <p>
+            <!--Radio Buttons implementation-->
+            <b>How did you gain interest in the university?*</b><br /><br />
+                <label>Friends
+                <input name ="Interest" type = "radio" value="students" />
+                </label>
+    
+                <label>Television
+                    <input name ="Interest" type = "radio" value="location" />
+                </label>
+    
+                <label>Internet
+                    <input name ="Interest" type = "radio" value="campus" />
+                </label>
+    
+                <label>Others
+                    <input name ="Interest" type = "radio" value="atmosphere" />
+                </label>
+        </p>
+
+        <p>
+            <b>Graduation Month and Year:</b><br /><br />
+            <label>Month:</label>
+            <input name = "month" id = "month" type ="text" placeholder="Select a month" list ="months" />
+            <datalist id="months">
+                <option value="January" />
+                <option value="February" />
+                <option value="March" />
+                <option value="April" />
+                <option value="May" />
+                <option value="June" />
+                <option value="July" />
+                <option value="August" />
+                <option value="September" />
+                <option value="October" />
+                <option value="November" />
+                <option value="December" />
+            </datalist>
+            <label>Year:
+                <input name ="year" id = "year" type ="text" placeholder="YYYY" />
+            </label>
+        </p>
+        <p>
+            <label><b>How likely are you to recommend this school to others ?: </b></label>
+            <input name = "likely" id="likely" type ="text" placeholder="Select likelihood" list ="likelihood" />
+            <datalist id="likelihood">
+                <option value="Very Likely" />
+                <option value="Likely" />
+                <option value="Unlikely" />
+        </p>
+        <p>
+            <label>Additional Comments:<br />
+                <textarea name ="comments" id="comments" rows="5" cols="60" placeholder="Please enter comments if any."></textarea>
+            </label>
+        </p>
+        
+        <p> 
+            <label><b>Data:
+                <input name="data" id="data" type = "text" size = "60" onblur="computeAvgMax()" placeholder="Enter 10 comma separated numbers ranging 1-100">
+                </b>
+            </label>
+            <span name="wrongInput" id="wrongInput" style= "color: #FF0000"></span></br>
+            <label><b>Average:<span name="average" id="average"></span></b></label></br>
+            <label><b>Maximum:<span name="maximum" id="maximum"></span></b></label>
+        </p>
+
+        <p>
+            <input type ="submit" value="Submit" />
+            <input type ="reset" value="Reset" onclick="resetForm()"/>
+        </p>
+        </form>
+        <hr />
+        <footer style="text-align: right;">
+            <a href="https://www.gmu.edu/"><img src="GMU_Logo.jpg"/></a>
+        </footer>
+    </body>
+</html>
